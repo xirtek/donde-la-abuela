@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Agregar Pedido</title>
+        <f:event type="preRenderView" listener="#{indexController.verificarSesion()}"/>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2" >
+
+                <p:column >
+                    <h:outputText value="Bienvenido(a) #{indexController.usuarioConectado()} | "/>
+                </p:column>
+                <p:column >
+                    <p:commandLink  action="#{indexController.cerrarSesion()}" value="Cerrar Sesión"/>
+                </p:column>
+
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+
+    <h:body>
+        <h:form>
+            <p:separator/> 
+
+            <br/>
+            <H1>"Donde la Abuela" :: Agregar Pedido :: Paso 2</H1>
+            <br/>
+
+            <h:panelGrid columns="2" >
+
+                <h:outputText value="#{pedidoBean.retornarNombrePlato()}"/>
+
+                <p:column >
+                    <h:outputText value="$ #{pedidoBean.retornarPrecioPlato()}"/>
+                </p:column>
+                
+                <h:outputText value="#{pedidoBean.retornarNombreBebida()}"/>
+
+                <p:column >
+                    <h:outputText value="$ #{pedidoBean.retornarPrecioBebida()}"/>
+                </p:column>
+
+                <h:outputText value="A domicilio"/>
+
+                <p:column >
+                    <h:outputText value="#{pedidoBean.retornarEsDespachoPedido()}"/>
+                </p:column>
+
+                <h:outputText value="Total"/>
+
+                <p:column >
+                    <h:outputText value="$ #{pedidoBean.retornarTotalPlatoBebida()}"/>
+                </p:column>
+
+                <p:link outcome="prepararPedido" value="Volver">
+                    <f:param name="linkVolverPreparar" />
+                </p:link>
+                
+
+                <p:commandButton action="#{pedidoBean.confirmarPedido()}" value="Generar Pedido" />
+                
+            </h:panelGrid>
+
+            <br/>
+            <br/>
+            <p:separator/> 
+            <br/>
+            <br/>
+
+            <p:link outcome="menuCliente" value="Ir al Menú">
+                <f:param name="linkVolverMenu" />
+            </p:link>
+
+        </h:form>
+    </h:body>
+</html>
+
